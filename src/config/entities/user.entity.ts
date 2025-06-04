@@ -4,10 +4,11 @@ import {
   Column,
   OneToMany,
   CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Url } from './url.entity';
 
-@Entity()
+@Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -23,6 +24,12 @@ export class User {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @Column({ nullable: true })
+  deletedAt: Date;
 
   @OneToMany(() => Url, (url) => url.user)
   urls: Url[];
