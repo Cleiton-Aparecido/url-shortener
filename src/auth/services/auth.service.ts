@@ -35,7 +35,7 @@ export class AuthService {
         id: user.id,
       };
       return {
-        access_token: this.jwtService.sign(payload, { expiresIn: '10m' }),
+        access_token: this.jwtService.sign(payload, { expiresIn: '10h' }),
       };
     } catch (error) {
       throw new UnauthorizedException(error.message);

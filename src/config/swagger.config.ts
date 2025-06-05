@@ -7,6 +7,15 @@ export function setupSwagger(app: INestApplication): void {
     .setTitle('link shortener API')
     .setDescription('Documentação da API para encurtar URLs')
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        description: 'Insira o token no formato: Bearer [token].',
+      },
+      'Authorization',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
