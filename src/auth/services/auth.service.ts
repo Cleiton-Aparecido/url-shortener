@@ -25,18 +25,17 @@ export class AuthService {
   async login(auth: AuthDto): Promise<{ access_token: string }> {
     try {
       const user = await this.validateEmail(auth);
-      console.log(user);
       if (!user) {
         throw new UnauthorizedException('Usuário ou senha inválidos');
       }
 
       const payload = {
-        username: user.username,
+        name: user.name,
         email: user.email,
-        sub: user.id,
+        id: user.id,
       };
       return {
-        access_token: this.jwtService.sign(payload, { expiresIn: '10m' }),
+        access_token: this.jwtService.sign(payload, { expiresIn: '10h' }),
       };
     } catch (error) {
       throw new UnauthorizedException(error.message);
