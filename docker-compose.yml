@@ -5,16 +5,15 @@ services:
     image: postgres:15-alpine
     container_name: postgres_link_shortener
     restart: unless-stopped
-    # Define variáveis de ambiente para o Postgres
     environment:
-      POSTGRES_USER: ${DB_USER} # vem do .env
+      POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - '3968:5432' # mapeia 3968 (host) → 5432 (container)
+      - '5968:5432' # mapeia 5968 (host) → 5432 (container)
 
   app:
     build:
@@ -27,41 +26,23 @@ services:
     env_file:
       - .env
     environment:
-      # A aplicação lê:
-      #   DB_HOST → dentro do container, queremos apontar para 'db'
-      #   DB_PORT → 5432 (porta interna do Postgres)
       DB_HOST: db
       DB_PORT: 5432
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: ${DB_DATABASE}
-
-      # Porta que o Nest vai expor
       PORT: ${PORT}
-
-      # Mantenha aqui outras variáveis (JWT_SECRET, BASE_URL, etc.)
       JWT_SECRET: ${JWT_SECRET}
       BASE_URL: ${BASE_URL}
     ports:
-      - '3023:3000' # expõe porta 3023 (host) → 3023 (container)
-    volumes:
-      - .:/usr/src/app # monta o código local para desenvolvimento
+      - '3000:3000' # expõe porta 3023 (host) → 3023 (container)
     command: >
       sh -c "
         # Espera o Postgres ficar disponível (pode ajustar o sleep ou usar wait-for-it)
         sleep 5 &&
-        # Executa migrations: no dist (já compilado)
         yarn migrate:run &&
-        # Inicia a aplicação no modo apropriado
         yarn start:prod
       "
-    # Se preferir usar npm:
-    # command: >
-    #   sh -c "
-    #     sleep 5 &&
-    #     npm run migrate:run &&
-    #     npm run start:prod
-    #   "
 
 volumes:
   postgres_data:

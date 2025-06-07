@@ -28,6 +28,6 @@ export function setupSwagger(app: INestApplication): void {
       persistAuthorization: true,
     },
     customCss: darkStyle,
-    customSiteTitle: 'API Docs - Dark Mode',
+    customSiteTitle: 'API Docs - Url Shortener',
   });
 }

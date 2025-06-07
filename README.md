@@ -113,13 +113,11 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
    ```env
    # .env
    PORT=3000
-
    DB_HOST=localhost
    DB_PORT=5432
    DB_USER=postgres
    DB_PASSWORD=1234
    DB_DATABASE=urlencurtado
-
    JWT_SECRET=chavesecretaqualquer
    BASE_URL=http://localhost:3000
 
@@ -134,12 +132,23 @@ docker-compose up --build
 
 4. **Api Externa**
 
-   http://localhost:3023
+   http://localhost:3000
 
 5. **Api Externa**
 
 - acessar documentação swagger:
 
 ```bash
-    http://localhost:3023/api
+    http://localhost:3000/api
+```
+
+5. **Acessar banco de dados localmente**
+
+```bash
+    Banco de dados: postgres
+    host: localhost
+    Porta: 5968
+    User: postgres
+    PASSWORD: 1234
+    DATABASE: urlencurtado
 ```
