@@ -152,3 +152,7 @@ docker-compose up --build
     PASSWORD: 1234
     DATABASE: urlencurtado
 ```
+6. **Sugestão de melhoria**
+  - Implemetar validação de link's
+  - Validar se o link é validado. (obs: Permitir inserir link's que realmente exista)
+  - Validar se o link é segurado. (Obs: Caso um usuário insira um link malicioso, seria interessante ter uma tratativa)
