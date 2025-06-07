@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
-import { UsersService } from 'src/users/service/users.service';
+import { UsersService } from 'src/users/services/users.service';
 
 describe('UsersController (e2e)', () => {
   let app: INestApplication;
