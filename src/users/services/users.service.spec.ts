@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConflictException } from '@nestjs/common';
-import { UsersService } from '../service/users.service';
+import { UsersService } from './users.service';
 import { UsersRepository } from '../repository/users.repository';
 
 describe('UsersService', () => {
