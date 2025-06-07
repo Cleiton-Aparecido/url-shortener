@@ -99,3 +99,56 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 # Documentação da aplicação
+
+1. **Docker & Docker Compose**
+
+   - Garanta que o Docker e o Docker Compose estejam instalados e rodando na sua máquina.
+   - Versões recomendadas (fevereiro 2025):
+     - Docker Engine >= 20.10
+     - Docker Compose >= 1.29
+
+2. **Arquivo `.env` configurado**  
+   Na raiz do projeto, crie (ou verifique) o arquivo `.env` contendo pelo menos:
+
+   ```env
+   # .env
+   PORT=3000
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_USER=postgres
+   DB_PASSWORD=1234
+   DB_DATABASE=urlencurtado
+   JWT_SECRET=chavesecretaqualquer
+   BASE_URL=http://localhost:3000
+
+   ```
+
+3. **Como Subir o Banco e a Aplicação**
+
+```bash
+docker-compose up --build
+
+```
+
+4. **Api Externa**
+
+   http://localhost:3000
+
+5. **Api Externa**
+
+- acessar documentação swagger:
+
+```bash
+    http://localhost:3000/api
+```
+
+5. **Acessar banco de dados localmente**
+
+```bash
+    Banco de dados: postgres
+    host: localhost
+    Porta: 5968
+    User: postgres
+    PASSWORD: 1234
+    DATABASE: urlencurtado
+```

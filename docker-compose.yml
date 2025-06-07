@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_link_shortener
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - '5968:5432' # mapeia 5968 (host) → 5432 (container)
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nest_link_shortener
+    depends_on:
+      - db
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      PORT: ${PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      BASE_URL: ${BASE_URL}
+    ports:
+      - '3000:3000' # expõe porta 3023 (host) → 3023 (container)
+    command: >
+      sh -c "
+        # Espera o Postgres ficar disponível (pode ajustar o sleep ou usar wait-for-it)
+        sleep 5 &&
+        yarn migrate:run &&
+        yarn start:prod
+      "
+
+volumes:
+  postgres_data:
