@@ -34,7 +34,7 @@ export class UrlsController {
   @ApiOperation({
     summary: 'Endpoint para encurtar url',
     description:
-      'Api ira encurtar e retornar o link encurtado, token de autenticação é opcional',
+      'Api ira encurtar e retornar o link encurtado, token de autenticação é opcional, caso informar o token precisa ser valido',
   })
   @ApiBody({
     description: 'Exemplo de url para encurtar',
@@ -188,7 +188,6 @@ export class UrlsController {
   @Get(':code')
   @Redirect()
   async redirect(@Param('code') code: string) {
-    console.log(code);
     const target = await this.service.redirect(code);
     return { url: target };
   }
