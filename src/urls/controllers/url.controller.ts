@@ -7,9 +7,7 @@ import {
   Param,
   Post,
   Put,
-  Query,
   Redirect,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import {

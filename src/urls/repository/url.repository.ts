@@ -1,7 +1,6 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Url } from 'src/config/entities/url.entity';
 import { IsNull, Repository } from 'typeorm';
-import { UrlEdtirDto } from '../dto/url-edit.dto';
 import { UrlDeleteDto } from '../dto/url-delete.dto';
 
 export class UrlRepository {
