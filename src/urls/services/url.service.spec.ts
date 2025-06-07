@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UrlsService } from './services/url.service';
-import { UrlRepository } from './repository/url.repository';
+import { UrlsService } from '../services/url.service';
+import { UrlRepository } from '../repository/url.repository';
 import { NotFoundException } from '@nestjs/common';
 
 describe('UrlsService', () => {
